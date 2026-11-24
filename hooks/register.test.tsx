@@ -55,6 +55,8 @@ test('die Schalttafel listet die Mods aus den Einstellungen', async ($, on) => {
     },
   }))
   on('store.get', () => ({ value: undefined }))
+  // Ein Rechner, auf dem der Mod nicht unter dem Konfigurationsordner liegt.
+  on('env.get', () => ({ value: 'C:/home' }))
   on('fs.read', (_, e) => {
     const text = fileAt(String(e.path))
     if (text === undefined) {
@@ -81,6 +83,7 @@ test('Aus schaltet einen Mod ab und merkt es sich', async ($, on) => {
   on('settings.read', () => ({
     value: { enabledPlugins: { 'savvy-progress@claude-kit': true } },
   }))
+  on('env.get', () => ({ value: 'C:/home' }))
   on('fs.read', (_, e) => {
     const text = fileAt(String(e.path))
     if (text === undefined) {

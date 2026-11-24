@@ -184,11 +184,18 @@ async function loadInfos($: any, root: string): Promise<void> {
     return
   }
   isInfoLoaded = true
+  // Der Konfigurationsordner steht im Pfad dieses Mods, sonst in den
+  // Umgebungsvariablen.
   const at = root.indexOf('.claude')
-  if (at < 0) {
+  let configDir = at >= 0 ? root.slice(0, at + '.claude'.length) : ''
+  if (configDir === '') {
+    const custom = await $.env.get('CLAUDE_CONFIG_DIR')
+    const home = (await $.env.get('USERPROFILE')) ?? (await $.env.get('HOME'))
+    configDir = custom ?? (home === undefined ? '' : `${home}/.claude`)
+  }
+  if (configDir === '') {
     return
   }
-  const configDir = root.slice(0, at + '.claude'.length)
   try {
     const file = JSON.parse(await $.fs.read(`${configDir}/plugins/installed_plugins.json`))
     const plugins: Record<string, any> = file.plugins ?? file
