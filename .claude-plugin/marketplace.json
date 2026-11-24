@@ -1,0 +1,5 @@
+{
+  "name": "switchboard",
+  "owner": { "name": "lehrtristan2007-byte" },
+  "plugins": [{ "name": "switchboard", "source": "./" }]
+}
