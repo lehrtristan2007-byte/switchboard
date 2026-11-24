@@ -43,3 +43,7 @@ Danach öffnet `/switchboard` die Schalttafel. Der Befehl heißt so, weil `/mods
 claude plugin validate .
 claude plugin test .
 ```
+
+## Lizenz
+
+MIT, siehe `LICENSE`.

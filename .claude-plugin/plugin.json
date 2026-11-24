@@ -2,5 +2,6 @@
   "name": "switchboard",
   "version": "0.1.0",
   "description": "Zeigt alle laufenden Mods in einer Schalttafel (/switchboard), schaltet sie ein und aus und blendet ihre zusätzlichen Panels aus",
+  "license": "MIT",
   "types": "./types/index.d.ts"
 }
